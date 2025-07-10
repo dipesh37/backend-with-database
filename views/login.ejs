@@ -12,7 +12,6 @@
     
 
     <h3 class="text-3xl mb-5">Login Your Account</h3>
-    <a href="/about" class="text-sm text-blue-400 hover:underline">About This Project</a>
 
     <form action = "/login" method="post">
         <input class="px-3 py-2 rounded-md outline-none bg-transparent border-2 border-zinc-800" type="email" placeholder="email" name="email">
@@ -23,7 +22,7 @@
         Don't have an account?
         <a href="/" class="text-blue-400 hover:underline">Create Account</a>
       </p>
-
+      <a href="/about" class="text-sm text-blue-400 hover:underline">About This Project</a>
       <% if (error) { %>
         <p style="color:red;"><%= error %></p>
       <% } %>
