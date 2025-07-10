@@ -7,6 +7,17 @@ const postModel = require("./models/post");
 const app = express();
 const userModel = require("./models/user");
 
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB error:", err));
+
 app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +57,6 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   let { email, password } = req.body;
-  userModel.findOne({ username: "example" }); // ✅ Correct
 
   let user = await userModel.findOne({ email });
   if (!user) return res.status(500).send("Something Went Wrong"); //it tells that no user is there with that particular email in database
