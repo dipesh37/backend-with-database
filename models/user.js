@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/backend");
 
 const userSchema = mongoose.Schema({
   username: String,
@@ -9,7 +8,5 @@ const userSchema = mongoose.Schema({
   password: String,
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "post" }],
 });
-
-//module.exports = mongoose.model("user", userSchema);
 
 module.exports = mongoose.model("User", userSchema);

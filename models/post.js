@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/backend");
 
 const postSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user", // this assumes you already have a "user" model elsewhere
+    ref: "user", // this assumes a "user" model is defined
   },
   date: {
     type: Date,
