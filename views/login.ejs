@@ -18,6 +18,11 @@
         Don't have an account?
         <a href="/" class="text-blue-400 hover:underline">Create Account</a>
       </p>
+
+      <% if (error) { %>
+        <p style="color:red;"><%= error %></p>
+      <% } %>
+      
    </div>
 </body>
 </html> 

@@ -67,12 +67,12 @@ app.post("/login", async (req, res) => {
       let token = jwt.sign({ email: email, userid: user._id }, "shhhh"); //setting token in login part
       res.cookie("token", token);
       res.status(200).send("You can login");
-    } else res.redirect("/login");
+    } else res.render("login", { error: "Invalid email or password" });
   });
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { error: null });
 });
 
 app.get("/logout", (req, res) => {
