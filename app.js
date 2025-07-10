@@ -24,6 +24,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login", { error: null });
+});
+
 app.get("/profile", isLoggedIn, (req, res) => {
   console.log(req.user); //we get user data in our terminal
   res.render("login");
@@ -63,12 +71,8 @@ app.post("/login", async (req, res) => {
       let token = jwt.sign({ email: email, userid: user._id }, "shhhh"); //setting token in login part
       res.cookie("token", token);
       res.status(200).send("You can login");
-    } else res.render("login", { error: "Invalid email or password" });
+    } else res.render("login", { error: "Invalid email or password🙄" });
   });
-});
-
-app.get("/login", (req, res) => {
-  res.render("login", { error: null });
 });
 
 app.get("/logout", (req, res) => {
