@@ -6,8 +6,10 @@
   <title>About This Project</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-  <div class="w-full min-h-screen bg-zinc-900 text-white p-10">
+<body class="min-h-screen flex flex-col bg-zinc-900 text-white">
+    <!-- Page content wrapper -->
+    <div class="flex-1 p-10">
+
     <h1 class="text-3xl font-bold mb-4">About This Project</h1>
 
     <p class="mb-2">This is a backend web application developed using <strong>Express.js</strong>.</p>
@@ -15,10 +17,11 @@
     <p class="mb-2">The application is not hosted locally; it is deployed globally using <strong>Render</strong> and can be accessed from anywhere.</p>
 
     <a href="/login" class="text-blue-400 hover:underline block mt-6">← Back to Login</a>
+</div>
 
     <footer class="mt-10 text-center text-gray-500">
       &copy; 2025C All rights reserved
     </footer>
-  </div>
+ 
 </body>
 </html>
