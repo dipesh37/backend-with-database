@@ -24,10 +24,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
 app.get("/profile", isLoggedIn, (req, res) => {
   console.log(req.user); //we get user data in our terminal
   res.render("login");
@@ -81,12 +77,13 @@ app.get("/logout", (req, res) => {
 });
 
 function isLoggedIn(req, res, next) {
-  if ((req, cookies.token === "")) res.send("You must be logged in");
-  //protected route, if token is blank then he/she must be logged in
-  else {
-    let data = jwt.verify(req.cookies.token, "shhhh"); //secret key
+  if (!req.cookies.token || req.cookies.token === "") {
+    return res.send("You must be logged in");
+  } else {
+    let data = jwt.verify(req.cookies.token, "shhhh");
     req.user = data;
+    next();
   }
-  next();
 }
+
 app.listen(3000);
