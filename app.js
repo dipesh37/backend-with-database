@@ -71,7 +71,7 @@ app.post("/login", async (req, res) => {
       let token = jwt.sign({ email: email, userid: user._id }, "shhhh"); //setting token in login part
       res.cookie("token", token);
       res.status(200).send("You can login");
-    } else res.render("login", { error: "Invalid email or password🙄" });
+    } else res.render("login", { error: "Invalid email or password 🙄" });
   });
 });
 
