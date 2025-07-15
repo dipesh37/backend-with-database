@@ -16,12 +16,24 @@
 
     <h5 class="mb-5">You can create a post</h5>
 
-    <form action="">
-        <textarea placeholder="What's on your mind  ?" class="pd-3 w-1/3 resize-none bg-transparent border-2 border-zinc-800 rounded-md"></textarea>
-
-
-
+    <form method="post" action="/post">
+        <textarea placeholder="What's on your mind  ?" class=" outline-none pd-3 w-1/3 resize-none bg-transparent border-2 border-zinc-800 rounded-md"></textarea>
+        <input class="bg-blue-500 px-2 py-3 rounded-md block mt-2" type="submit" value="Create New Post">
     </form>
+
+    <div class="posts mt-20">
+        <h3 class="text-zinc-400">Your Posts</h3>
+        <div class="postcontainer mt-5">
+            <div class="post w-1/3 p-4 border-[1px] border-zinc-700 rounded-md bg-zinc-800 mb-4">
+                <h3 class="text-blue-500 mb-2">@some User Name</h3>
+                <p class="text-sm tracking-tight">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi exercitationem pariatur delectus dolore?</p>
+                <div class="btns flex gap-4 mt-5">
+                    <a class="text-blue-500" href="">Like</a>
+                    <a class="text-zinc-600" href="">edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <p class="mt-4 text-sm text-gray-400">
         Want to Logout?

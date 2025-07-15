@@ -39,6 +39,21 @@ app.get("/profile", isLoggedIn, async (req, res) => {
   res.render("profile", { user });
 });
 
+app.get("/post", isLoggedIn, async (req, res) => {
+  //islogged in only allows to modify post if user is logged into his/her account
+  //we get user data in our terminal
+  let user = await userModel.findOne({ email: req.user.email }); //wo is logged in got by this line
+  let { content } = req.body;
+  let post = await postModel.create({
+    // post knows who is the user
+    user: user._id,
+    content,
+  });
+  user.posts.push(user._id);
+  await user.save();
+  res.redirect("/profile");
+});
+
 app.post("/register", async (req, res) => {
   let { email, password, username, name, age } = req.body;
 
