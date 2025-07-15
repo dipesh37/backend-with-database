@@ -34,9 +34,13 @@ app.get("/login", (req, res) => {
 
 app.get("/profile", isLoggedIn, async (req, res) => {
   //we get user data in our terminal
-  let user = await userModel
-    .findOne({ email: req.user.email })
-    .populate("posts");
+  let user = await userModel.findOne({ email: req.user.email }).populate({
+    path: "posts",
+    populate: {
+      path: "user", //  populate user inside each post
+      select: "username name email", // only return these fields
+    },
+  });
   //console.log(user);
   res.render("profile", { user });
   console.log("Username:", user.username);
