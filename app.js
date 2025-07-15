@@ -39,6 +39,7 @@ app.get("/profile", isLoggedIn, async (req, res) => {
     .populate("posts");
   //console.log(user);
   res.render("profile", { user });
+  console.log("Username:", user.username);
 });
 
 app.post("/post", isLoggedIn, async (req, res) => {
