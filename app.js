@@ -64,7 +64,7 @@ app.get("/edit/:id", isLoggedIn, async (req, res) => {
   res.render("edit", { post }); //taking to a new page of edit section!
 });
 
-app.get("/update/:id", isLoggedIn, async (req, res) => {
+app.post("/update/:id", isLoggedIn, async (req, res) => {
   let post = await postModel
     .findOne({ _id: req.params.id }, { content: req.body.content })
     .populate("user"); //finding the id of user
