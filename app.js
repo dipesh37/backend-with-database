@@ -43,7 +43,32 @@ app.get("/profile", isLoggedIn, async (req, res) => {
   });
   //console.log(user);
   res.render("profile", { user });
-  console.log("Username:", user.username);
+  //console.log("Username:", user.username);
+});
+
+app.get("/like/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOne({ _id: req.params.id }).populate("user");
+
+  if (post.likes.indexOf(req.user.userid) === -1) {
+    post.likes.push(req.user.userid);
+  } else {
+    post.likes.splice(post.likes.indexOf(req.user.userid), 1);
+  }
+
+  await post.save();
+  res.redirect("/profile");
+});
+
+app.get("/edit/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOne({ _id: req.params.id }).populate("user"); //finding the id of user
+  res.render("edit", { post }); //taking to a new page of edit section!
+});
+
+app.get("/update/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel
+    .findOne({ _id: req.params.id }, { content: req.body.content })
+    .populate("user"); //finding the id of user
+  res.redirect("/profile"); //taking to a new page of edit section!
 });
 
 app.post("/post", isLoggedIn, async (req, res) => {
