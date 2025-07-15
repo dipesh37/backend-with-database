@@ -32,9 +32,11 @@ app.get("/login", (req, res) => {
   res.render("login", { error: null });
 });
 
-app.get("/profile", isLoggedIn, (req, res) => {
+app.get("/profile", isLoggedIn, async (req, res) => {
   //we get user data in our terminal
-  res.render("profile");
+  let user = await userModel.findOne({ email: req.user.email });
+  console.log(user);
+  res.render("profile", { user });
 });
 
 app.post("/register", async (req, res) => {
