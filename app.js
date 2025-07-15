@@ -34,8 +34,10 @@ app.get("/login", (req, res) => {
 
 app.get("/profile", isLoggedIn, async (req, res) => {
   //we get user data in our terminal
-  let user = await userModel.findOne({ email: req.user.email });
-  console.log(user);
+  let user = await userModel
+    .findOne({ email: req.user.email })
+    .populate("posts");
+  //console.log(user);
   res.render("profile", { user });
 });
 
