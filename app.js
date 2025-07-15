@@ -51,7 +51,7 @@ app.post("/post", isLoggedIn, async (req, res) => {
     user: user._id,
     content,
   });
-  user.posts.push(user._id);
+  user.posts.push(post._id);
   await user.save();
   res.redirect("/profile");
 });
